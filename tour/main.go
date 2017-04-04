@@ -4,4 +4,6 @@ func main(){
 	basicAll()
 
 	flowControlAll()
+
+	moretypesAll()
 }
