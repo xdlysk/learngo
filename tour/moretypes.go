@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
+	"golang.org/x/tour/pic"
+	"math"
 )
 
 func moretypesAll(){
@@ -32,7 +34,59 @@ func moretypesAll(){
 
 	slicesOfSlices()
 
+	range1()
+
+	range2()
+
+	pic.Show(Pic)
+
+	functionValues()
+
 	fmt.Println("=================moretypes begin===================")
+}
+
+func compute(fn func(float64,float64) float64) float64{
+	return fn(3,4)
+}
+
+func functionValues(){
+	hypot := func(x,y float64)float64{
+		return math.Sqrt(x*x+y*y)
+	}
+	fmt.Println(hypot(5, 12))
+
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
+}
+
+func Pic(dx, dy int) [][]uint8 {
+	ret:=make([][]uint8,dy)
+	for index:= range ret{
+		ret[index] = make([]uint8,dx)
+		for i := range ret[index]{
+			ret[index][i] = uint8(i)
+		}
+	}
+	return ret
+}
+
+func range2(){
+	pow := make([]int,10)
+	for i:= range pow{
+		pow[i] = 1<< uint(i)
+	}
+	for _,value:=range pow{
+		//注意_，其他变量名若不适用则会报错
+		fmt.Printf("%d\n",value)
+	}
+}
+
+func range1(){
+	
+	var pow = []int{1,2,3,4,5,6,7}
+	for i,v:=range pow {
+		fmt.Printf("the index is %d ,the value is %d\n",i,v)
+	}
 }
 
 func slicesOfSlices(){
